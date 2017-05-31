@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 25
@@ -25,6 +27,7 @@ dependencies {
     def supportLibraryVersion = '25.1.1'
     def firebaseUiVersion = '1.2.0'
     def butternifeVersion = '8.6.0'
+    def daggerVersion = '2.10'
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -51,9 +54,15 @@ dependencies {
     compile "com.jakewharton:butterknife:$butternifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$butternifeVersion"
 
+    // Dagger
+    compile "com.google.dagger:dagger:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+
     testCompile "junit:junit:$junitVersion"
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 }
 
-
-
 apply plugin: 'com.google.gms.google-services'
+repositories {
+    mavenCentral()
+}
